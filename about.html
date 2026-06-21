@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us — Little Bear</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #fcfbfa;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #3c322c;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .logo {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        .logo span {
+            color: #fd7e14;
+        }
+
+        /* Underline effect for active navigation links */
+        .navbar-nav .nav-link.active {
+            text-decoration: underline;
+            text-underline-offset: 6px;
+            /* Space between text and line */
+            text-decoration-color: #fd7e14;
+            /* Theme accent color */
+            text-decoration-thickness: 2px;
+            color: #3c322c !important;
+            /* Keeps standard dark tone */
+        }
+
+        .premium-card {
+            background: #ffffff;
+            border: 1px solid rgba(228, 222, 215, 0.6);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(142, 122, 106, 0.04);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar (Centered Layout matching image_9ea32e.png) -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top py-3">
+        <div class="container">
+            <a href="home.html" class="navbar-brand fw-bold logo fs-3">Little <span>Bear</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2">
+                    <li class="nav-item"><a href="home.html" class="nav-link px-3 fw-medium">Home</a></li>
+                    <li class="nav-item"><a href="shop.html" class="nav-link px-3 fw-medium">Shop & Pricing</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link px-3 fw-medium active">About</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link px-3 fw-medium">Contact</a></li>
+                </ul>
+                <a href="cart.html"
+                    class="btn btn-outline-dark rounded-pill px-4 position-relative d-inline-flex align-items-center gap-2 fw-medium"
+                    id="cartLink">
+                    🛒 Cart
+                    <span class="badge rounded-pill bg-danger cart-badge" id="cartBadge" style="display:none">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Hero -->
+    <header class="py-5 my-4">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <p class="text-uppercase tracking-wider small fw-bold mb-2" style="color:#fd7e14;">Our Story</p>
+                    <h1 class="fw-bold display-4 mb-3 text-dark">Born from a<br><span>mother's wish</span></h1>
+                    <p class="text-muted lead" style="line-height: 1.7;">LittleBear began in a small workshop in 2018,
+                        when founder Elena Hart couldn't find a toy soft enough, safe enough, and beautiful enough for
+                        her newborn. So she made one herself — and everything grew from there.</p>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="https://img.alicdn.com/bao/uploaded/i2/2029774751/O1CN01GmJXRM1ky0Ec1uI9L_!!2029774751.jpg"
+                        class="img-fluid rounded-5 shadow-lg" alt="Our Workshop"
+                        style="max-height: 380px; width: 100%; object-fit: cover; border: 6px solid #fff;">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Details Section -->
+    <section class="container my-4 pb-5">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="premium-card p-4 h-100">
+                    <h2 class="fw-bold h4 mb-3 text-dark">A small stitch at a time</h2>
+                    <p class="text-muted mb-0" style="line-height: 1.6;">What started as a single homemade bear for a
+                        nursery quickly caught the attention of friends and neighbors. Elena prioritized strict quality
+                        rules: zero plastics, 100% traceably-sourced organic cotton threads, and natural plant extracts
+                        for rich safe coloring dyes.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="premium-card p-4 h-100">
+                    <h2 class="fw-bold h4 mb-3 text-dark">Eco-friendly & Conscious</h2>
+                    <p class="text-muted mb-0" style="line-height: 1.6;">Today, our collection has grown, but our
+                        process remains remarkably unchanged. We work entirely alongside local suppliers to minimize
+                        transport footprints and donate a portion of all proceeds directly to children's health and
+                        nature preservation foundations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-5 border-top">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <a href="index.html" class="navbar-brand fw-bold logo d-block mb-2">Little<span>Bear</span></a>
+                    <p class="text-muted small">Handcrafted soft toys made from organic materials, designed to be a
+                        child's most treasured companion.</p>
+                </div>
+                <div class="col-6 col-md-2 offset-md-2">
+                    <h6 class="fw-bold">Shop</h6>
+                    <ul class="list-unstyled text-muted small">
+                        <li><a href="shop.html" class="text-decoration-none text-muted">All toys</a></li>
+                        <li><a href="shop.html" class="text-decoration-none text-muted">New arrivals</a></li>
+                        <li><a href="shop.html" class="text-decoration-none text-muted">Gift sets</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-2">
+                    <h6 class="fw-bold">Company</h6>
+                    <ul class="list-unstyled text-muted small">
+                        <li><a href="about.html" class="text-decoration-none text-muted">Our story</a></li>
+                        <li><a href="about.html" class="text-decoration-none text-muted">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-2">
+                    <h6 class="fw-bold">Help</h6>
+                    <ul class="list-unstyled text-muted small">
+                        <li><a href="contact.html" class="text-decoration-none text-muted">FAQ</a></li>
+                        <li><a href="contact.html" class="text-decoration-none text-muted">Contact us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center text-muted small">
+                &copy; 2026 LittleBear. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = JSON.parse(localStorage.getItem('lb_cart') || '[]');
+            const badge = document.getElementById('cartBadge');
+            if (badge && cart.length > 0) {
+                badge.innerText = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+                badge.style.display = 'inline-block';
+            }
+        });
+    </script>
+</body>
+
+</html>

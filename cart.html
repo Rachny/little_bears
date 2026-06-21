@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Cart — Little Bear</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts for Premium Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      background-color: #fcfbfa;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #3c322c;
+    }
+    
+    h1, h2, h3, h4, h5, h6, .logo {
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    .logo span { color: #fd7e14; }
+    
+    /* Global Premium Card Adjustments */
+    .premium-card {
+      background: #ffffff;
+      border: 1px solid rgba(228, 222, 215, 0.6);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(142, 122, 106, 0.04);
+    }
+    
+    /* Cart Items Design */
+    .cart-item-row {
+      transition: all 0.3s ease;
+      border-radius: 16px;
+      padding: 1.25rem;
+    }
+    .cart-item-row:hover {
+      background-color: #faf8f5;
+    }
+    .cart-img-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .cart-img { 
+      width: 90px; 
+      height: 90px; 
+      object-fit: cover; 
+    }
+    
+    /* Custom Stylized Counter */
+    .quantity-counter {
+      border: 1px solid #e4ded7;
+      background: #ffffff;
+      border-radius: 100px;
+      padding: 4px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .quantity-counter .btn-counter {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #8c7b70;
+      transition: all 0.2s;
+    }
+    .quantity-counter .btn-counter:hover {
+      background-color: #fd7e14;
+      color: #ffffff;
+    }
+    .quantity-counter .count-val {
+      min-width: 30px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* Primary CTA Glow effects */
+    .btn-checkout {
+      background: linear-gradient(135deg, #fd7e14 0%, #f76707 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 14px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      box-shadow: 0 8px 20px rgba(253, 126, 20, 0.25);
+      transition: all 0.3s ease;
+    }
+    .btn-checkout:hover {
+      background: linear-gradient(135deg, #f76707 0%, #e8590c 100%);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(253, 126, 20, 0.35);
+    }
+    
+    /* Empty State Illustration Circle */
+    .empty-illustration {
+      width: 100px;
+      height: 100px;
+      background: #fff4eb;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar (Centered Layout matching image_9ea32e.png) -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top py-3">
+    <div class="container">
+      <a href="home.html" class="navbar-brand fw-bold logo fs-3">Little<span>Bear</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2">
+          <li class="nav-item"><a href="home.html" class="nav-link px-3 fw-medium">Home</a></li>
+          <li class="nav-item"><a href="shop.html" class="nav-link px-3 fw-medium">Shop & Pricing</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link px-3 fw-medium">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link px-3 fw-medium">Contact</a></li>
+        </ul>
+        <a href="cart.html" class="btn btn-outline-dark rounded-pill px-4 position-relative d-inline-flex align-items-center gap-2 fw-medium" id="cartLink">
+          🛒 Cart
+          <span class="badge rounded-pill bg-danger cart-badge" id="cartBadge" style="display:none">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Title Banner Section -->
+  <header class="py-5 text-center">
+    <div class="container">
+      <h1 class="fw-bold display-5 mb-1">Your Shopping cart</h1>
+      <p class="text-muted small">Review your chosen companions before checkout.</p>
+    </div>
+  </header>
+
+  <!-- Main Checkout Interface Module -->
+  <main class="container mb-5 pb-5">
+    <div class="row g-4">
+      
+      <!-- Left Container Layer: Items Grid Column -->
+      <div class="col-lg-8">
+        <div class="premium-card p-4">
+          <h2 class="h5 fw-bold mb-4 border-bottom pb-3">Selected Companions</h2>
+          <div id="cartItems"></div>
+        </div>
+      </div>
+
+      <!-- Right Container Layer: Calculations Box -->
+      <div class="col-lg-4">
+        <div class="premium-card p-4 position-sticky" style="top: 110px;" id="cartSummary">
+          <!-- Populated programmatically via script engine updates -->
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+<footer class="bg-white py-5 border-top">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <a href="index.html" class="navbar-brand fw-bold logo d-block mb-2">Little <span>Bear</span></a>
+                    <p class="text-muted small">Handcrafted soft toys made from organic materials, designed to be a
+                        child's most treasured companion.</p>
+                </div>
+                <div class="col-6 col-md-2 offset-md-2">
+                    <h6 class="fw-bold">Shop</h6>
+                    <ul class="list-unstyled text-muted small">
+                        <li><a href="shop.html" class="text-decoration-none text-muted">All toys</a></li>
+                        <li><a href="shop.html" class="text-decoration-none text-muted">New arrivals</a></li>
+                        <li><a href="shop.html" class="text-decoration-none text-muted">Gift sets</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-2">
+                    <h6 class="fw-bold">Company</h6>
+                    <ul class="list-unstyled text-muted small">
+                        <li><a href="about.html" class="text-decoration-none text-muted">Our story</a></li>
+                        <li><a href="about.html" class="text-decoration-none text-muted">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-2">
+                    <h6 class="fw-bold">Help</h6>
+                    <ul class="list-unstyled text-muted small">
+                        <li><a href="contact.html" class="text-decoration-none text-muted">FAQ</a></li>
+                        <li><a href="contact.html" class="text-decoration-none text-muted">Contact us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center text-muted small">
+                &copy; 2026 LittleBear. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+
+  <!-- Bootstrap 5 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- JavaScript Rendering Architecture Hooks -->
+  <script>
+    function renderCart() {
+      const itemsDiv = document.getElementById('cartItems');
+      const summaryAside = document.getElementById('cartSummary');
+      const cart = JSON.parse(localStorage.getItem('lb_cart') || '[]');
+
+      // Synchronize Navbar Cart Badge Bubble Indicator
+      const badge = document.getElementById('cartBadge');
+      if (badge) {
+        const totalItems = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+        if (totalItems > 0) {
+          badge.innerText = totalItems;
+          badge.style.display = 'inline-block';
+        } else {
+          badge.style.display = 'none';
+        }
+      }
+
+      // Empty State Alternative Structural Layout Template Injection
+      if (cart.length === 0) {
+        itemsDiv.innerHTML = `
+          <div class="text-center py-5">
+            <div class="empty-illustration">🧸</div>
+            <h3 class="h5 fw-bold mb-2">Your basket is quite lonely</h3>
+            <p class="text-muted small mb-4 col-md-8 mx-auto">Looks like you haven't added any soft friends yet. Explore our workshop to find your perfect match.</p>
+            <a href="shop.html" class="btn btn-dark rounded-pill px-4 py-2 small fw-medium">Browse Workshop</a>
+          </div>`;
+        summaryAside.innerHTML = `
+          <h5 class="fw-bold border-bottom pb-2 mb-3">Summary</h5>
+          <div class="d-flex justify-content-between mb-3 fw-bold"><span>Estimated Total</span><span>$0.00</span></div>
+          <div class="alert alert-light border text-center text-muted small py-2 mb-0">Add items to calculate shipping costs</div>`;
+        return;
+      }
+
+      let subtotal = 0;
+      let htmlItems = '';
+
+      cart.forEach((item, index) => {
+        const itemPrice = parseFloat(item.price) || 0;
+        const itemQty = parseInt(item.qty) || 1;
+        const itemImg = item.img || 'https://via.placeholder.com/90';
+        const itemTotal = itemPrice * itemQty;
+        subtotal += itemTotal;
+        
+        htmlItems += `
+          <div class="cart-item-row d-flex flex-column flex-sm-row align-items-sm-center justify-content-between mb-3 border-bottom pb-3">
+            <div class="d-flex align-items-center mb-3 mb-sm-0">
+              <div class="cart-img-wrapper me-3 flex-shrink-0">
+                <img src="${itemImg}" class="cart-img" alt="${item.name}">
+              </div>
+              <div>
+                <h6 class="fw-bold mb-1 text-dark">${item.name}</h6>
+                <p class="text-orange fw-medium mb-0 small text-muted">$${itemPrice.toFixed(2)} each</p>
+              </div>
+            </div>
+            
+            <div class="d-flex align-items-center justify-content-between justify-content-sm-end gap-4 w-100 w-sm-auto">
+              <div class="quantity-counter">
+                <button class="btn-counter" onclick="changeQty(${index}, -1)">−</button>
+                <span class="count-val">${itemQty}</span>
+                <button class="btn-counter" onclick="changeQty(${index}, 1)">+</button>
+              </div>
+              <div class="text-end" style="min-width: 80px;">
+                <span class="fw-bold d-block mb-1">$${itemTotal.toFixed(2)}</span>
+                <button class="btn p-0 text-danger small text-decoration-none border-0 bg-transparent" onclick="removeItem(${index})" style="font-size:0.8rem">Remove</button>
+              </div>
+            </div>
+          </div>`;
+      });
+
+      itemsDiv.innerHTML = htmlItems;
+      
+      const shippingFee = subtotal >= 50 ? 0 : 5.00;
+      const finalTotal = subtotal + shippingFee;
+
+      // Render premium summary panel with dynamic elements
+      summaryAside.innerHTML = `
+        <h5 class="fw-bold border-bottom pb-3 mb-3">Order Summary</h5>
+        <div class="d-flex justify-content-between mb-2 text-muted small"><span>Subtotal</span><span class="fw-medium text-dark">$${subtotal.toFixed(2)}</span></div>
+        <div class="d-flex justify-content-between mb-3 border-bottom pb-3 text-muted small">
+          <span>Shipping</span>
+          <span class="${shippingFee === 0 ? 'text-success fw-bold' : 'fw-medium text-dark'}">${shippingFee === 0 ? 'FREE' : '$5.00'}</span>
+        </div>
+        
+        ${shippingFee > 0 ? `
+          <div class="p-2 bg-light rounded-3 text-center text-muted mb-3" style="font-size:0.75rem">
+            Spend <strong>$${(50 - subtotal).toFixed(2)}</strong> more to unlock <strong>Free Shipping!</strong>
+          </div>` : ''}
+
+        <div class="d-flex justify-content-between mb-4 fw-bold h4"><span>Total</span><span class="text-dark">$${finalTotal.toFixed(2)}</span></div>
+        
+        <!-- Accordion Item for Custom Gift Card Attachment Options -->
+        <div class="mb-3">
+          <div class="form-check form-switch small">
+            <input class="form-check-input" type="checkbox" role="switch" id="giftNoteCheck" onchange="toggleNote()">
+            <label class="form-check-label fw-medium text-secondary" for="giftNoteCheck">🎁 Send as a special gift order</label>
+          </div>
+          <textarea id="giftNote" class="form-control form-control-sm mt-2 border-dashed" rows="2" placeholder="Write your handwritten note message here..." style="display:none; border-style:dashed; border-color:#fd7e14; resize:none; font-size:0.8rem;"></textarea>
+        </div>
+
+        <button class="btn btn-checkout w-100 py-3 mb-2" onclick="executeCheckout()">Proceed to Secure Checkout</button>
+        <button class="btn btn-link btn-sm text-muted w-100 text-decoration-none mt-2" onclick="clearCart()">Empty Entire Bag</button>`;
+    }
+
+    function changeQty(index, delta) {
+      const cart = JSON.parse(localStorage.getItem('lb_cart') || '[]');
+      if(!cart[index]) return;
+      cart[index].qty = (parseInt(cart[index].qty) || 1) + delta;
+      if (cart[index].qty <= 0) cart.splice(index, 1);
+      localStorage.setItem('lb_cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    function removeItem(index) {
+      const cart = JSON.parse(localStorage.getItem('lb_cart') || '[]');
+      cart.splice(index, 1);
+      localStorage.setItem('lb_cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    function clearCart() {
+      localStorage.removeItem('lb_cart');
+      renderCart();
+    }
+
+    function toggleNote() {
+      const check = document.getElementById('giftNoteCheck');
+      document.getElementById('giftNote').style.display = check.checked ? 'block' : 'none';
+    }
+
+    function executeCheckout() {
+      alert('Thank you for ordering your new companion! Checkout simulated successfully. 🧸');
+      clearCart();
+    }
+
+    document.addEventListener('DOMContentLoaded', renderCart);
+  </script>
+</body>
+</html>
